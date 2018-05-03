@@ -5,5 +5,6 @@ public class TestGit {
 		System.out.println("hello, git");
 		System.out.println("haha");
 		System.out.println("cccc");
+		System.out.println("hello");
 	}
 }
