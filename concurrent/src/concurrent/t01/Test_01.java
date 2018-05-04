@@ -4,6 +4,9 @@
  */
 package concurrent.t01;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.concurrent.TimeUnit;
 
 public class Test_01 {
@@ -35,17 +38,24 @@ public class Test_01 {
 	}
 	
 	public static void main(String[] args) {
+		
+		//通过打印的时间，可以看出锁定对象
 		final Test_01 t = new Test_01();
+		final DateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		new Thread(new Runnable() {
 			@Override
 			public void run() {
+				System.out.println("线程1调用testSync3开始:"+df.format(new Date()));
 				t.testSync3();
+				System.out.println("线程1调用testSync3结束:"+df.format(new Date()));
 			}
 		}).start();
 		new Thread(new Runnable() {
 			@Override
 			public void run() {
+				System.out.println("线程2调用testSync3开始:"+df.format(new Date()));
 				t.testSync3();
+				System.out.println("线程2调用testSync3结束:"+df.format(new Date()));
 			}
 		}).start();
 	}
