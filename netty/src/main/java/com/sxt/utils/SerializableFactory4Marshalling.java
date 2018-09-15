@@ -18,10 +18,12 @@ public class SerializableFactory4Marshalling {
      * @return MarshallingDecoder
      */
     public static MarshallingDecoder buildMarshallingDecoder() {
-        //首先通过Marshalling工具类的精通方法获取Marshalling实例对象 参数serial标识创建的是java序列化工厂对象。jboss-marshalling-serial 包提供
+        //首先通过Marshalling工具类的精通方法获取Marshalling实例对象 参数serial标识创建的是java序列化工厂对象。
+    	//jboss-marshalling-serial 包提供
         final MarshallerFactory marshallerFactory = Marshalling.getProvidedMarshallerFactory("serial");
         //创建了MarshallingConfiguration对象，配置了版本号为5 
         final MarshallingConfiguration configuration = new MarshallingConfiguration();
+        // 序列化版本。只要使用JDK5以上版本，version只能定义为5。
         configuration.setVersion(5);
         //根据marshallerFactory和configuration创建provider
         UnmarshallerProvider provider = new DefaultUnmarshallerProvider(marshallerFactory, configuration);

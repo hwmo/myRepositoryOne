@@ -27,7 +27,7 @@ public class Server4HelloWorld {
 		init();
 	}
 	private void init(){
-		// 初始化线程组
+		// 初始化线程组,构建线程组的时候，如果不传递参数，则默认构建的线程组线程数是CPU核心数量。
 		acceptorGroup = new NioEventLoopGroup();
 		clientGroup = new NioEventLoopGroup();
 		// 初始化服务的配置

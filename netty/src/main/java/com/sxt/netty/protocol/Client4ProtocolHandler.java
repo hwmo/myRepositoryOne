@@ -13,7 +13,7 @@ public class Client4ProtocolHandler extends ChannelHandlerAdapter {
 			System.out.println("client receive protocol content : " + message);
 			message = ProtocolParser.parse(message);
 			if(null == message){
-				System.out.println("error request from server");
+				System.out.println("error response from server");
 				return ;
 			}
 			System.out.println("from server : " + message);

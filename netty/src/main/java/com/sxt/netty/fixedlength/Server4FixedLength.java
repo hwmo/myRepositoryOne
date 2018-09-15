@@ -53,11 +53,9 @@ public class Server4FixedLength {
 
 			@Override
 			protected void initChannel(SocketChannel ch) throws Exception {
-				// 数据分隔符
-				ByteBuf delimiter = Unpooled.copiedBuffer("$E$".getBytes());
 				ChannelHandler[] acceptorHandlers = new ChannelHandler[3];
-				// 定长Handler。通过构造参数设置消息长度。发送的消息长度不足可以使用空格补全。
-				acceptorHandlers[0] = new FixedLengthFrameDecoder(3);
+				// 定长Handler。通过构造参数设置消息长度（单位是字节）。发送的消息长度不足可以使用空格补全。
+				acceptorHandlers[0] = new FixedLengthFrameDecoder(5);
 				// 字符串解码器Handler，会自动处理channelRead方法的msg参数，将ByteBuf类型的数据转换为字符串对象
 				acceptorHandlers[1] = new StringDecoder(Charset.forName("UTF-8"));
 				acceptorHandlers[2] = new Server4FixedLengthHandler();

@@ -84,7 +84,7 @@ public class Client4HeatbeatHandler extends ChannelHandlerAdapter {
 				Sigar sigar = new Sigar();
 				// CPU信息
 				CpuPerc cpuPerc = sigar.getCpuPerc();
-				Map<String, Object> cpuMsgMap = new HashMap<String, Object>();
+				Map<String, Object> cpuMsgMap = new HashMap<>();
 				cpuMsgMap.put("Combined", cpuPerc.getCombined());
 				cpuMsgMap.put("User", cpuPerc.getUser());
 				cpuMsgMap.put("Sys", cpuPerc.getSys());
@@ -92,19 +92,19 @@ public class Client4HeatbeatHandler extends ChannelHandlerAdapter {
 				cpuMsgMap.put("Idle", cpuPerc.getIdle());
 				
 				// 内存信息
-				Map<String, Object> memMsgMap = new HashMap<String, Object>();
+				Map<String, Object> memMsgMap = new HashMap<>();
 				Mem mem = sigar.getMem();
 				memMsgMap.put("Total", mem.getTotal());
 				memMsgMap.put("Used", mem.getUsed());
 				memMsgMap.put("Free", mem.getFree());
 				
 				// 文件系统
-				Map<String, Object> fileSysMsgMap = new HashMap<String, Object>();
+				Map<String, Object> fileSysMsgMap = new HashMap<>();
 				FileSystem[] list = sigar.getFileSystemList();
 				fileSysMsgMap.put("FileSysCount", list.length);
 				List<String> msgList = null;
 				for(FileSystem fs : list){
-					msgList = new ArrayList<String>();
+					msgList = new ArrayList<>();
 					msgList.add(fs.getDevName() + "总大小:    " + sigar.getFileSystemUsage(fs.getDirName()).getTotal() + "KB");
 					msgList.add(fs.getDevName() + "剩余大小:    " + sigar.getFileSystemUsage(fs.getDirName()).getFree() + "KB");
 					fileSysMsgMap.put(fs.getDevName(), msgList);

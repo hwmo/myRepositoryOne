@@ -48,8 +48,6 @@ public class Client4FixedLength {
 
 			@Override
 			protected void initChannel(SocketChannel ch) throws Exception {
-				// 数据分隔符
-				ByteBuf delimiter = Unpooled.copiedBuffer("$E$".getBytes());
 				ChannelHandler[] handlers = new ChannelHandler[3];
 				handlers[0] = new FixedLengthFrameDecoder(3);
 				// 字符串解码器Handler，会自动处理channelRead方法的msg参数，将ByteBuf类型的数据转换为字符串对象
@@ -80,7 +78,14 @@ public class Client4FixedLength {
 				s = new Scanner(System.in);
 				System.out.print("enter message send to server > ");
 				String line = s.nextLine();
-				future.channel().writeAndFlush(Unpooled.copiedBuffer(line.getBytes("UTF-8")));
+				byte[] bs = new byte[5];
+				byte[] temp = line.getBytes("UTF-8");
+				if(temp.length <= 5){
+					for(int i = 0; i < temp.length; i++){
+						bs[i] = temp[i];
+					}
+				}
+				future.channel().writeAndFlush(Unpooled.copiedBuffer(bs));
 				TimeUnit.SECONDS.sleep(1);
 			}
 		}catch(Exception e){

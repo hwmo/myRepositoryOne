@@ -30,6 +30,7 @@ public class TestBuffer {
 		// 写入数据之前 ： java.nio.HeapByteBuffer[pos=0 lim=8 cap=8]
 		// pos - 游标位置， lim - 限制数量， cap - 最大容量
 		System.out.println("写入数据之前 ： " + buffer);
+		//System.out.println("当前游标指向的位置：" + buffer.get());
 		
 		// 写入字节数组到缓存
 		buffer.put(temp);
@@ -46,10 +47,12 @@ public class TestBuffer {
 		System.out.println("重置游标之后 ： " + buffer);
 
 		// 清空Buffer， pos = 0; lim = cap;
-		// buffer.clear();
+		//buffer.clear();
+		//System.out.println("清空之后 ： " + buffer);
 		
 		// get() -> 获取当前游标指向的位置的数据。
-		// System.out.println(buffer.get());
+		
+		System.out.println("当前游标指向的位置：" + buffer.get());
 		
 		/*for(int i = 0; i < buffer.remaining(); i++){
 			// get(int index) -> 获取指定位置的数据。

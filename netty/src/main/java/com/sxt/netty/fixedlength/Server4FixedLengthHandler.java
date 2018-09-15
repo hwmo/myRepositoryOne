@@ -1,5 +1,6 @@
 package com.sxt.netty.fixedlength;
 
+import io.netty.buffer.ByteBuf;
 import io.netty.buffer.Unpooled;
 import io.netty.channel.ChannelHandlerAdapter;
 import io.netty.channel.ChannelHandlerContext;
@@ -10,9 +11,11 @@ public class Server4FixedLengthHandler extends ChannelHandlerAdapter {
 	@Override
 	public void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception {
 		String message = msg.toString();
-		System.out.println("from client : " + message);
+		System.out.println("from client : " + message.trim());
 		String line = "ok ";
 		ctx.writeAndFlush(Unpooled.copiedBuffer(line.getBytes("UTF-8")));
+		//ctx.write(Unpooled.copiedBuffer(line.getBytes("UTF-8")));
+		//ctx.flush();
 	}
 	
 
